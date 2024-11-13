@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <?php
-  $BDProductos = array( 
-    array(1, 2, 3, 4, 5),                                       //El ID
-    array("Blusa", "Lentes", "Playera", "Pantalón", "Vestido"), //La Descripción
-    array(100, 350, 200, 420, 250),                             //El Precio
-    array("Dama", "Caballero", "Caballero", "Dama", "Dama"));   //Categoría
-  $iProductos = 5; //Indica el No. de Productos
+  $BDProductos = array(0,"CERO",0,""); //Aquí inicia el arreglo/array
+ $i=0; $iProductos=1; 
+ $filas=file('archivo.txt'); // Proceso de las líneas y la lectura del archivo
+ 
+ foreach($filas as $value){
+    list($id, $producto, $precio, $categoria) = explode(",", $value);
+    array_push($BDProductos, $id);
+    array_push($BDProductos, $producto);
+    array_push($BDProductos, $precio);
+    array_push($BDProductos, $categoria);
+    $iProductos++;
+  }
 
-  $BDAlmacen = array( 
-    array(1, 2, 3, 4, 5), //El IDProducto
-    array(0,10, 5,15, 3)); //Las Existencias
+  $BDAlmacen = array( //Definición del arreglo $BDAlmacen (Linea 16 a 20)...
+    array(1, 2, 3, 4, 5 ,6, 7), //El IDProducto
+    array(0,10, 5,15, 3, 6, 7)); //Las Existencias
 
   $iAlmacen = 2; //El No. de existencias
-  $BDVentas = array(
+  $BDVentas = array( //Definicion del arreglo $BDVentas (Linea 21 a 25)...
     array(2,3), //El IDProducto
     array(2,1), //La Cantidad
     array(700, 200)); //El Monto
   $iVentas = 2; //El No. de ventas al momento
 ?>
-<html lang="es">
+
+<html lang="es"> <!--A partir de aqui se define el idioma y diferentes elementos, información, iconos y estilo visual que contiene el codigo, ya sea texto, imagenes interactivas/dinamicas, botones, informacion adicional que se mostrara en el programa al ejecutarse, etc. (Linea 28 a 324)-->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Software Punto de Venta" content="">
-    <meta name="Evolet Arellano" content="">
+    <meta name="Arellano Ávila" content="">
     <title>Inicio | E-Shopper</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -74,6 +81,7 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
+								<li><a href="agregarproductos.php" target="blank"><i class="fa fa-plus"></i>Agregar</a></li>
 								<li><a href="checkout.php"><i class="fa fa-crosshairs"></i> Pagar</a></li>
 								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
 								<li><a href="login.php"><i class="fa fa-lock"></i> Login</a></li>
@@ -165,9 +173,10 @@
 						<h2>Categoría</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Damas/a></h4>
-										<h4 class="panel-title"><a href="#">Caballeros/a></h4>
+								<div class="panel panel-default">
+							        <h4 class="panel-title"><a href="#">Damas</a></h4>
+									<h4 class="panel-title"><a href="#">Caballeros </a></h4>
+									<h4 class="panel-title"><a href="#">Niños </a></h4>
 								</div>
 							</div>
 						</div><!--/category-products-->
@@ -182,42 +191,40 @@
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">Catálogo de Productos</h2>
-						<?php
-                        for ($i=0; $i< $iProductos;$i++){      
-                        ?>
+						<?php //Estructura e inicialización de variables, aparte el bucle con un ciclo for
+						$n=4;
+   for ($i=1; $i< $iProductos;$i++){     
+?>
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-                                           <?php
-                                           $img=$BDProductos[0][$i];
-                                           ?>
-                                           <img src="imagenes/home/<?php echo $img;?>
-                                           jpg" alt=""width="210" heigth="180"/>
-                                           <h2>
-                                           <?php echo "? " . $BDProductos[2][$i];?>
-                                           </h2>
-                                           <p><?php echo $BDProductos[1][$i];?>
-                                           </p>
-											<img src="images/home/product1.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Producto 1</p>
+											<?php 
+											$img = $BDProductos[$n]; //Se insertan las imagenes dinamicas del producto (Linea 203 a 206)
+											?>
+											<img src="images/home/<?php echo $img;
+										?>.jpg" alt="".Whith="210" height="180" alt=""/>
+											<h2><?php echo "$" . $BDProductos[$n+2]; ?> <!--Muestra el precio y nombre del producto (Linea 207 a 209)-->
+											</h2>
+											<p><?php echo "$" . $BDProductos[$n+1];?></p>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
 										</div>
-										<div class="product-overlay">
+										<div class="product-overlay"> <!--Superposicion de la informacion del producto-->
 											<div class="overlay-content">
-                                            <h2><?php echo "$ ". $BDProductos[2]
-                                            [$i]; ?></h2>
-                                        <p><?php echo $BDProductos[1][$i];?></p>
-												<h2>$56</h2>
-												<p>Producto 1</p>
+                      <h2><?php echo "$" . $BDProductos[$n+2]; ?> <!--Se repite el ciclo de mostrar el precio y nombre del producto (Linea 214 a 216)-->
+											</h2>
+											<p><?php echo "$" . $BDProductos[$n+1];?></p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
 											</div>
 										</div>
 								</div>								
 							</div>
 						</div>
-						<?php } ?>
+					<?php //Incremento del indice y cierre del bucle
+					 $n+=4;
+					 }
+					 ?>
+						
 					</div><!--features_items-->
 					
 					
@@ -227,20 +234,34 @@
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
-								<div class="item active">
+								<div class="item active">	
 									<div class="col-sm-4">
-										<div class="product-image-wrapper">
+										<div class="product-image-wrapper"> <!--Aqui se define un elemento que está activo por defecto, mostrando un producto con su imagen, precio y nombre, y tambien un botón para agregar al carrito (Linea 239 a 246)-->
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$50</h2>
-													<p>Producto Esp 1</p>
+													<img src="images/home/8.jpg" alt="" />
+													<h2>$200</h2>
+													<p>Skinny Jeans</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
 												</div>
 												
 											</div>
 										</div>
 									</div>
+<div class="col-sm-4">
+										<div class="product-image-wrapper"> <!--Aqui tambien se añade otro producto con su respectiva imagen, precio, nombre y botón de carrito (Linea 252 a 259)-->
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/9.jpg" alt="" />
+													<h2>$600</h2>
+													<p>Pantalón Cargo</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									
 								</div>
 								
 							</div>
