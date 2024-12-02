@@ -5,3 +5,9 @@
 5, Vestido,450,Damas
 6, Chamarra,600,Caballeros
 7, Chaleco,400,Caballeros
+8, Falda,300,Damas
+9, Gorro,100,Caballeros
+10, Sudadera Minecraft,300,Niños
+11, Sudadera Frozen,300,Niños
+12, Pijama Unicornio,400,Niños
+13, Pijama Stitch,400,Niños

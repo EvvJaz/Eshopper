@@ -32,7 +32,7 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> +52 618 1200 776</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> +52 618 2425 143</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> atencionclientes@gmail.com</a></li>
 							</ul>
 						</div>
@@ -106,9 +106,9 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Iniciar Sesión</h2>
-						<form action="#">
-							<input type="text" placeholder="Name" />
-							<input type="email" placeholder="Email Address" />
+						<form action="iniciarsesion.php" method="post">
+							<input type="text" placeholder="Nombre" name="usuario" />
+							<input type="email" placeholder="Dirección Email" name="email" />
 							<span>
 								<input type="checkbox" class="checkbox"> 
 								Mantener Sesión
@@ -118,18 +118,9 @@
 					</div><!--/login form-->
 				</div>
 				<div class="col-sm-1">
-					<h2 class="or">OR</h2>
+					
 				</div>
-				<div class="col-sm-4">
-					<div class="signup-form"><!--sign up form-->
-						<h2>Registro</h2>
-						<form action="#">
-							<input type="text" placeholder="Name"/>
-							<input type="email" placeholder="Email Address"/>
-							<input type="password" placeholder="Password"/>
-							<button type="submit" class="btn btn-default">Registrar</button>
-						</form>
-					</div><!--/sign up form-->
+				
 				</div>
 			</div>
 		</div>

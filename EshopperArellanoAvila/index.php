@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
-  $BDProductos = array(0,"CERO",0,""); //Aquí inicia el arreglo/array
+ session_start();
+ $usuario = $_SESSION["usuario"];
+ $email = $_SESSION["email"];
+
+ $BDProductos = array(0,"CERO",0,""); //Aquí inicia el arreglo/array
  $i=0; $iProductos=1; 
  $filas=file('archivo.txt'); // Proceso de las líneas y la lectura del archivo
  
@@ -15,7 +19,7 @@
 
   $BDAlmacen = array( //Definición del arreglo $BDAlmacen (Linea 16 a 20)...
     array(1, 2, 3, 4, 5 ,6, 7), //El IDProducto
-    array(0,10, 5,15, 3, 6, 7)); //Las Existencias
+    array(0, 10, 5, 15, 3, 6, 7)); //Las Existencias
 
   $iAlmacen = 2; //El No. de existencias
   $BDVentas = array( //Definicion del arreglo $BDVentas (Linea 21 a 25)...
@@ -59,7 +63,10 @@
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-phone"></i> +52 618 2425 143</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> atencionclientes@gmail.com</a></li>
+								 <font color="green">
+                  <li> Usuario: <?php echo $usuario; ?></li>
+                   <li> Correo <i class="fa fa-envelope"></i>:<?php echo $email; ?></li>
+                </font>
 							</ul>
 						</div>
 					</div>
@@ -205,15 +212,15 @@
 											$precioB = $BDProductos[$n+2];
 											?>
 											<img src="images/home/<?php echo $img;
-										?>.jpg" alt=""Whith="210" height="180" alt=""/>
-											<h2><?php echo "$" . $productoB;?> 
+										?>.jpg" alt=""width="210" height="180" alt=""/>
+											<h2><?php echo $productoB;?> 
 											</h2>
 											<p><?php echo "$" . $precioB;?><p>
 											<a href="cart.php?producto=<?php echo $productoB;?>&precio=<?php echo $precioB;?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
 										</div>
 										<div class="product-overlay"> 
 											<div class="overlay-content">
-                      <h2><?php echo "$" . $productoB; ?> 
+                      <h2><?php echo $productoB; ?> 
 											</h2>
 											<p><?php echo "$" . $precioB;?></p>
 												<a href="cart.php?producto=<?php echo $productoB;?>&precio=<?php echo $precioB;?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
@@ -241,7 +248,7 @@
 										<div class="product-image-wrapper"> <!--Aqui se define un elemento que está activo por defecto, mostrando un producto con su imagen, precio y nombre, y tambien un botón para agregar al carrito (Linea 239 a 246)-->
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/8.jpg" alt="" />
+													<img src="images/home/14.jpg" alt="" />
 													<h2>$200</h2>
 													<p>Skinny Jeans</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
@@ -254,7 +261,7 @@
 										<div class="product-image-wrapper"> <!--Aqui tambien se añade otro producto con su respectiva imagen, precio, nombre y botón de carrito (Linea 252 a 259)-->
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/9.jpg" alt="" />
+													<img src="images/home/15.jpg" alt="" />
 													<h2>$600</h2>
 													<p>Pantalón Cargo</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
